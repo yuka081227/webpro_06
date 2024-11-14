@@ -27,10 +27,11 @@ app.get("/luck", (req, res) => {
   res.render( 'luck', {number:num, luck:luck} );
 });
 
+let win = 0;
+let total = 0;
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
-  let win = Number(req.query.win);
-  let total = Number(req.query.total);
+  
   
   console.log({ hand, win, total });
 
@@ -67,10 +68,12 @@ app.get("/janken", (req, res) => {
   res.render('janken', display);
 });
 
+let pet = 0; //仲良くなった猫の数
+let met = 0; //出会った猫の数
 app.get("/cat",(req,res) => {
   const dos = Number(req.query.cat);  //行動
-  let pet = Number(req.query.pet);  //仲良くなった猫の数
-  let met = Number(req.query.met);  //出会った猫の数
+
+
 
   console.log({ dos, pet, met });
 
@@ -102,7 +105,9 @@ app.get("/cat",(req,res) => {
   const display = {
     feel: feel,
     result: result,
-    friend: friend
+    friend: friend,
+    pet:pet,
+    met:met
   };
 
   res.render('cat', display);
