@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>猫と仲良くなろう</title>
+        
+        <script>
+          // フォーム送信時に行動が選択されているかを確認
+          function validateForm() {
+            // ラジオボタンが1つでもチェックされているかを確認
+            const isChecked = Array.from(document.getElementsByName('cat'))
+                                   .some(radio => radio.checked);
+            
+            if (!isChecked) {
+              alert("行動を選んでください。");
+              return false; // フォーム送信を停止
+            }
+            
+            return true; // 行動が選択されていれば送信を許可
+          }
+        </script>
+    </head>
+    
+<body>
+    <form action="/cat" onsubmit="return validateForm()">
+        <input type="hidden" name="pet" value="0">  <!-- デフォルト値を設定 -->
+        <input type="hidden" name="met" value="0">  <!-- デフォルト値を設定 -->
+
+        <input type="radio" name="cat" id="cat1" value="1">
+        <label for="cat1">撫でる</label><br>
+
+        <input type="radio" name="cat" id="cat2" value="2">
+        <label for="cat2">ご飯をあげる</label><br>
+
+        <input type="radio" name="cat" id="cat3" value="3">
+        <label for="cat3">猫じゃらしで遊ぶ</label><br>
+
+        <input type="submit" value="送信">
+    </form>
+</body>
+</html>
