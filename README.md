@@ -81,37 +81,49 @@ no --> update
 update --> result
 
 ```
+
+### 使用方法
+1. ```node app5.js``` でプログラムを起動する
+1. Webブラウザでlocalhost:8080/public/cat.htmlにアクセスする
+1. 行動を選択し，送信ボタンを押す
+
+
 ## 猫の好感度を上げるゲームの機能
 
+ランダムに決められる猫の気分に合った行動を選択すると猫の好感度が上がる
 
+一度気分に合った行動をするたびに好感度が10上がり，最大値の100を目指す
 
 
 ```mermaid
 flowchart TD
 start["ゲーム開始"]
-selectAction["行動を選択"]
-determineFavorite["猫の好きな行動をランダムに決定"]
-checkMatch{"選択した行動は猫の好みに合っているか？"}
-increaseAffection["好感度を10上げる"]
-success["猫は喜んでいる"]
-failure["猫は少し不機嫌そう"]
-checkAffection{"好感度は最大値(100)に達したか？"}
-gameComplete["猫が完全に懐きました！ゲームクリア"]
-nextRound["次の行動を選択"]
+do["行動を選択"]
+feel["猫の気分をランダムに決定"]
+if{"選択した行動は猫の気分に合っているか？"}
+like["好感度を10上げる"]
+yes["猫は喜んでいる"]
+no["猫は少し不機嫌そう"]
+check{"好感度は最大値(100)に達したか？"}
+clear["猫が完全に懐きました！"]
+next["次の行動を選択"]
 
-start --> selectAction
-selectAction --> determineFavorite
-determineFavorite --> checkMatch
-checkMatch --> |はい| increaseAffection
-checkMatch --> |いいえ| failure
-increaseAffection --> success
-success --> checkAffection
-failure --> checkAffection
-checkAffection --> |はい| gameComplete
-checkAffection --> |いいえ| nextRound
-nextRound --> selectAction
+start --> do
+do --> feel
+feel --> if
+if --> |はい| like
+if --> |いいえ| no
+like --> yes
+yes --> check
+no --> check
+check --> |はい| clear
+check --> |いいえ| next
+next--> do
 ```
-
+### 使用方法
+1. ```node app5.js``` でプログラムを起動する
+1. Webブラウザでlocalhost:8080/public/catGame.htmlにアクセスする
+1. 行動を選択し，送信ボタンを押す
 
 
 
