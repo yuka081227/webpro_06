@@ -2,103 +2,127 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>猫と仲良くなろう</title>
     <style>
+        /* ページ全体のスタイル設定 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
+            font-family: Arial, sans-serif;; /* フォント設定 */
+            background-color: #f0f8ff; /* 背景色を淡い青に設定 */
+            color: #333; /* テキスト色を暗めの灰色に設定 */
             margin: 0;
             padding: 20px;
-            text-align: center;
+            text-align: center; /* テキストを中央揃え */
         }
 
+        /* ページのタイトルスタイル */
         h1 {
-            font-size: 2.5rem;
-            color: #444;
-            margin-bottom: 20px;
+            font-family: "Hachi Maru Pop", cursive;; /* フォントを指定 */
+            font-size: 4rem;
+            color: #333; /* テキストカラーを暗めの灰色に */
+            margin-top: 20px; /* 上部に余白を追加 */
         }
 
+        /* 一般的なテキストのスタイル */
         p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem; /* テキストのサイズを少し大きめに設定 */
+            margin-bottom: 20px; /* 下の要素との間隔を設定 */
         }
 
+        /* フォーム部分のスタイル */
         form {
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* フォーム下に余白を追加 */
         }
 
+        /* ラジオボタンの余白設定 */
         input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 10px; /* ラベルとの間隔を設定 */
         }
 
+        /* 送信ボタンのスタイル */
         input[type="submit"] {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
+            background-color: #5cb85c; /* ボタンの背景色を緑に設定 */
+            color: white; /* ボタン文字色を白に設定 */
+            border: none; /* ボーダーを消去 */
+            padding: 10px 20px; /* ボタンの内側余白を設定 */
+            font-size: 1rem; /* ボタン文字サイズを設定 */
+            cursor: pointer; /* カーソルをポインタに変更 */
+            border-radius: 5px; /* ボタンを丸みを帯びた形状に */
         }
 
+        /* ボタンホバー時の効果 */
         input[type="submit"]:hover {
-            background-color: #4cae4c;
+            background-color: #4cae4c; /* ホバー時に少し濃い緑に変更 */
         }
 
+        /* 見出しのスタイル設定 */
         h2, h3 {
-            margin-top: 20px;
+            margin-top: 20px; /* 上部の余白を設定 */
         }
 
         h2 {
-            color: #555;
+            color: #555; /* 色を少し濃い灰色に設定 */
         }
 
         h3 {
-            color: #777;
+            color: #777; /* 色を薄い灰色に設定 */
         }
 
+        /* 結果表示部分の強調スタイル */
         .result {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-top: 30px;
+            font-size: 1.5rem; /* 文字サイズを大きめに設定 */
+            font-weight: bold; /* 太字に設定 */
+            color: #2c3e50; /* 濃い青色で強調 */
+            margin-top: 30px; /* 上部に余白を追加 */
         }
 
+        /* ページ中央のコンテンツ領域のスタイル */
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* 最大幅を設定して中央寄せ */
+            margin: 0 auto; /* 左右を中央揃え */
+            background-color: #ffffff; /* 背景を白に設定 */
+            padding: 20px; /* 内側余白を設定 */
+            border-radius: 10px; /* 角を丸めたデザインに */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 柔らかい影を付けて浮き上がる効果 */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>猫と仲良くなろう！</h1>
+        <!-- タイトル -->
+        <h1>ねことなかよくなろう</h1>
+        <!-- 猫との出会いメッセージ -->
         <p>猫と出会った！何をする？</p>
+
+        <!-- 行動を選ぶフォーム -->
         <form action="/cat" onsubmit="return validateForm()">
+            <!-- ラジオボタン：撫でる選択 -->
             <input type="radio" name="cat" id="cat1" value="1">
             <label for="cat1">撫でる</label><br>
 
+            <!-- ラジオボタン：ご飯をあげる選択 -->
             <input type="radio" name="cat" id="cat2" value="2">
             <label for="cat2">ご飯をあげる</label><br>
 
+            <!-- ラジオボタン：遊ぶ選択 -->
             <input type="radio" name="cat" id="cat3" value="3">
             <label for="cat3">猫じゃらしで遊ぶ</label><br>
+
+            <!-- 送信ボタン -->
             <input type="submit" value="送信">
         </form>
 
+        <!-- 猫の気分を表示 -->
         <h2>猫の気分：<%= feel %></h2>
+        <!-- 選択した行動を表示 -->
         <h2>あなたの行動：<%= select %></h2>
-        <h2 class="result">あなたの行動は．．．<%= result %></h2>
+        <!-- 猫との関係結果を表示 -->
         <h2><%= friend %></h2>
+        <!-- 出会った猫と仲良くなった猫の数を表示 -->
         <h3>仲良くなった猫の数：<%= pet %> 今まで出会った猫の数：<%= met %></h3>
     </div>
 </body>
 </html>
-
-
