@@ -70,13 +70,19 @@ app.get("/janken", (req, res) => {
 
 let pet = 0; //仲良くなった猫の数
 let met = 0; //出会った猫の数
+
 app.get("/cat",(req,res) => {
   const dos = Number(req.query.cat);  //行動
 
+  //選択内容を表示
+  let select = '';
+  if (dos === 1) select = '撫でる';
+  else if (dos === 2) select = 'ご飯をあげる';
+  else if (dos === 3) select = '猫じゃらしで遊ぶ';
 
+  console.log({ dos, pet, met, select });
 
-  console.log({ dos, pet, met });
-
+  //猫の気分をランダムに決定
   const num = Math.floor(Math.random() * 3 + 1);
   let feel = '';  //猫の気分
   if(num === 1) feel = 'お腹空いた';
@@ -85,6 +91,7 @@ app.get("/cat",(req,res) => {
 
   let friend;
   let result;
+
   //猫の気分と行動がマッチすれば仲良くなれる
   if(
     (dos === 1 && feel === '撫でてほしい') ||
@@ -107,20 +114,12 @@ app.get("/cat",(req,res) => {
     result: result,
     friend: friend,
     pet:pet,
-    met:met
+    met:met,
+    select:select
   };
 
   res.render('cat', display);
 
-
 });
-
-
-
-
-
-
-
-
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
