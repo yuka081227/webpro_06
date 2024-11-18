@@ -90,7 +90,6 @@ app.get("/cat",(req,res) => {
   else feel = '撫でてほしい';
 
   let friend;
-  let result;
 
   //猫の気分と行動がマッチすれば仲良くなれる
   if(
@@ -98,12 +97,10 @@ app.get("/cat",(req,res) => {
     (dos === 2 && feel === 'お腹空いた') ||
     (dos === 3 && feel === '遊んでほしい')
   ){
-    result = '正解だった！'
     friend = '猫と仲良くなれた！'
     pet += 1;
 
   }else{
-    result = '失敗だった．．．'
     friend = '猫に引っ掻かれてしまった．．．'
   }
 
@@ -111,7 +108,6 @@ app.get("/cat",(req,res) => {
 
   const display = {
     feel: feel,
-    result: result,
     friend: friend,
     pet:pet,
     met:met,
@@ -121,5 +117,61 @@ app.get("/cat",(req,res) => {
   res.render('cat', display);
 
 });
+
+let affection = 0; // 猫の現在の好感度
+const maxAffection = 10; // 猫が完全に懐くための好感度
+app.get("/catGame", (req, res) => {
+  const dos = Number(req.query.action); // ユーザーの選択した行動
+  let select = ''; // ユーザーの行動を表示用
+  if (dos === 1) select = '撫でる';
+  else if (dos === 2) select = 'ご飯をあげる';
+  else if (dos === 3) select = '猫じゃらしで遊ぶ';
+
+  console.log({ dos, affection });
+
+  // 猫の好きな行動をランダムに決定
+  const num = Math.floor(Math.random() * 3 + 1);
+  let favorite = ''; // 猫の好きな行動
+  if (num === 1) favorite = '撫でる';
+  else if (num === 2) favorite = 'ご飯をあげる';
+  else favorite = '猫じゃらしで遊ぶ';
+
+  let result;
+  let message;
+
+  // ユーザーの行動が猫の好みと一致しているかを判定
+  if (select === favorite) {
+    result = '大成功！';
+    message = '猫はとても喜んでいる！';
+    affection += 1; // 好感度を上げる
+  } else {
+    result = '失敗．．．';
+    message = '猫は少し不機嫌そう．．．';
+  }
+
+  // 猫が完全に懐いたかどうかを判定
+  let gameStatus;
+  if (affection >= maxAffection) {
+    gameStatus = '猫は完全に懐きました！おめでとう！';
+    affection = maxAffection; // 好感度を上限に固定
+  } else {
+    gameStatus = `あと${maxAffection - affection}回の成功で猫が懐きます！`;
+  }
+
+  // レンダリング用データ
+  const display = {
+    favorite: favorite,
+    select: select,
+    result: result,
+    message: message,
+    affection: affection,
+    gameStatus: gameStatus,
+  };
+
+  res.render('catGame', display);
+});
+
+
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

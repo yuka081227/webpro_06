@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫の好感度ゲーム</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h1 { font-size: 2.5rem; color: #444; }
+        h2 { font-size: 1.5rem; color: #666; }
+        p { font-size: 1.2rem; }
+        .status { font-size: 1.4rem; margin-top: 20px; color: #007BFF; }
+    </style>
+</head>
+<body>
+    <h1>猫の好感度ゲーム</h1>
+    <p>猫の気分：<strong><%= favorite %></strong></p>
+    <p>あなたが選んだ行動は：<strong><%= select %></strong></p>
+    <h2>結果：<%= result %></h2>
+    <p><%= message %></p>
+    <div class="status">
+        <p>現在の好感度：<%= affection %></p>
+        <p><%= gameStatus %></p>
+    </div>
+    <form action="/catGame">
+        <p>次に何をする？</p>
+        <input type="radio" name="action" id="action1" value="1">
+        <label for="action1">撫でる</label><br>
+        <input type="radio" name="action" id="action2" value="2">
+        <label for="action2">ご飯をあげる</label><br>
+        <input type="radio" name="action" id="action3" value="3">
+        <label for="action3">猫じゃらしで遊ぶ</label><br>
+        <input type="submit" value="送信">
+    </form>
+</body>
+</html>

@@ -1,5 +1,6 @@
 # webpro_06
 ## このプログラムについて
+
 ## ファイル一覧
 
 ファイル名 | 説明
@@ -7,6 +8,8 @@
 app5.js | プログラム本体
 public/janken.html | じゃんけんの開始画面
 janken.ejs | じゃんけんのテンプレートファイル
+public/cat.html | 猫と仲良くなるゲームの開始画面
+cat.ejs | 猫と仲良くなるゲームののテンプレートファイル
 
 ```javascript
 console.log('Hello');
